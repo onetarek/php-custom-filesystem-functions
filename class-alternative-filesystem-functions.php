@@ -4,6 +4,7 @@
  * Author: oneTarek
  * Author URL: http://onetarek.com
  * Version: 1.0.0
+ * Source URL : https://github.com/onetarek/php-alternative-filesystem-functions
  */ 
 
 class Alternative_Filesystem_Functions{
