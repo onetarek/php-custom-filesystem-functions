@@ -15,21 +15,33 @@ class Alternative_Filesystem_Functions{
 	 * @return void
 	 **/
 	public static function delete( $dir ){
-	    if( is_dir( $dir ) )
-	    {
-	      $files = glob( $dir . '*', GLOB_MARK ); //GLOB_MARK adds a slash to directories returned
-	 
-	      foreach( $files as $file )
+	  if ( is_dir( $dir ) )
+	  {
+	     
+	    $dir_handle = opendir( $dir );
+	    if( $dir_handle )
+	    {       
+	      while( $file = readdir( $dir_handle ) ) 
 	      {
-	          self::delete( $file );      
+	           if($file != "." && $file != "..") 
+	           {
+	                if( ! is_dir( $dir."/".$file ) )
+	                {
+	                  unlink( $dir."/".$file );
+	                }
+	                else
+	                {
+	                  self::delete($dir.'/'.$file);
+	                }
+	                      
+	           }
 	      }
-	 
-	      rmdir( $dir );
-	    } 
-	    elseif( is_file( $dir ) ) 
-	    {
-	      unlink( $dir );  
+	      closedir( $dir_handle );
 	    }
+	    rmdir( $dir );
+	    return true;
+	  }
+	  return false;
 	}
 
 	/**
