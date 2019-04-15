@@ -15,6 +15,8 @@ class Alternative_Filesystem_Functions{
 	 * @return void
 	 **/
 	public static function delete( $dir ){
+		
+	  $dir = rtrim($dir, "/");
 	  if ( is_dir( $dir ) )
 	  {
 	     
@@ -41,7 +43,12 @@ class Alternative_Filesystem_Functions{
 	    rmdir( $dir );
 	    return true;
 	  }
-	  return false;
+	  else
+	  {
+	  	unlink( $dir );
+	  	return true;
+	  }
+	  
 	}
 
 	/**
@@ -51,7 +58,8 @@ class Alternative_Filesystem_Functions{
 	 * @return bool
 	 **/
 	public static function copy( $src, $dst ){
-		
+		$src = rtrim($src, "/");
+		$dst = rtrim($dst, "/");
 		if( empty($src) || empty($dst) || $src == $dst || !file_exists( $src ) )
 		{
 			return false;
