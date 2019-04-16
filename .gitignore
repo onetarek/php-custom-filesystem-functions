@@ -1,0 +1,12 @@
+.DS_Store
+Desktop.ini
+Thumbs.db
+.Spotlight-V100
+.Trashes
+
+.sass-cache
+.svn
+.cvs
+*.bak
+*.swp
+node_modules
